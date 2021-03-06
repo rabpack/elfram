@@ -15,7 +15,8 @@
         "vlucas/phpdotenv": "^5.3",
         "filp/whoops": "^2.9",
         "phpmailer/phpmailer": "^6.3",
-        "swiftmailer/swiftmailer": "^6.0"
+        "swiftmailer/swiftmailer": "^6.0",
+        "illuminate/database": "^8.31"
     },
     "autoload": {
         "psr-4": {

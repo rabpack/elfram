@@ -5,6 +5,8 @@ namespace System\Application;
 use Dotenv\Dotenv;
 use Rabpack\Routing\Application\Application as Router;
 use System\Config\Config;
+use Illuminate\Database\Capsule\Manager as Capsule;
+
 
 class Application {
 
@@ -12,6 +14,7 @@ class Application {
      {
         $this->dotEnvRun();
         $this->debagDdRun();
+        $this->ormRun();
         $this->helpersRun();
         $this->providersRun();
         $this->routerRun();
@@ -54,6 +57,27 @@ class Application {
            require_once $customHelperPath;
         }
         require_once dirname(__DIR__).'/Helpers/helpers.php';
+
+     }
+     private function ormRun()
+     {
+      $capsule = new Capsule;
+      $capsule->addConnection([
+
+         "driver" => Config::get('database.PDO.mysql.DB_DRIVER'),
+      
+         "host" =>Config::get('database.PDO.mysql.DB_HOST'),
+      
+         "database" => Config::get('database.PDO.mysql.DB_NAME'),
+      
+         "username" => Config::get('database.PDO.mysql.DB_USERNAME'),
+      
+         "password" => Config::get('database.PDO.mysql.DB_PASSWORD')
+      
+      ]);
+
+      $capsule->setAsGlobal();
+      $capsule->bootEloquent();
 
      }
 
