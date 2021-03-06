@@ -10,6 +10,7 @@ class Config {
          $config = require $configDir.$fileConfig.'.php';
          return $config;
     }
+    
     protected function get($config)
     {
        $config = explode('.',$config);
@@ -20,7 +21,6 @@ class Config {
     }
     private function arrayDot(array $configs,$settings)
     {
-    //    dd($configs,$settings);
        $config = [];
        foreach($settings as $key => $setting){
               if($key === 0){
@@ -31,6 +31,7 @@ class Config {
        }
        return $config;
     }
+
     public static function __callStatic($name, $arguments)
     {
       $obj = new self();

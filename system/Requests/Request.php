@@ -35,9 +35,12 @@ class Request {
     {
         if(is_null($this->ip)) $this->ip = $_SERVER['REMOTE_ADDR'];
         return $this->ip;
-
     }
      
+    public function input(string $attribute)
+    {
+       return $this->request[$attribute];
+    }
 
 
 }

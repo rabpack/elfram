@@ -2,14 +2,22 @@
 
 namespace System\Validations;
 
+use System\Http\Request;
 use System\Validations\Classes\Validator;
 use System\Validations\ValidationsInterface;
 
-class Validation{
+class Validation extends Request{
+    
     private $errors;
+
     public function __construct()
     {
-      
+     parent::__construct();
+     $rules = $this->run();
+     if($this->make($this->all(),$rules)->validated()){
+         return $this->all();
+     }
+     return $this->errors();
     }
     
     public function run()
@@ -44,6 +52,10 @@ class Validation{
             }
         }
         return $errors;
+    }
+    protected function validated()
+    {
+        return empty($this->errors) ? true : false;
     }
     public static function __callStatic($name, $arguments)
     {

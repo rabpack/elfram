@@ -2,6 +2,7 @@
 
 namespace Test\Unit;
 
+use App\Http\Requests\UserRequest;
 use PHPUnit\Framework\TestCase;
 use System\Validations\Validation;
 
@@ -52,11 +53,12 @@ class ValidationTest extends TestCase{
                 'confirm' => 'password should be equals with passwordConf',
             ],
         ]);
-
+        
         $this->assertTrue($validator->isError());
         $this->assertIsArray($validator->errors());
         $this->assertEquals($validator->error('name.required'),'name is required!');
     }
+
 
 
 }

@@ -10,7 +10,7 @@ class Validator{
     private $errors = [];
 
 
-    public function __construct(array $request,array $rules,array $messages)
+    public function __construct(array $request,array $rules,$messages)
     {
     
         $this->request = $request;

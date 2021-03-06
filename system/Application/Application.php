@@ -12,6 +12,7 @@ class Application {
      {
         $this->dotEnvRun();
         $this->debagDdRun();
+        $this->helpersRun();
         $this->providersRun();
         $this->routerRun();
         
@@ -44,6 +45,16 @@ class Application {
            $obj = new $provider();
            $obj->boot();
         }
+     }
+
+     private function helpersRun()
+     {
+        $customHelperPath = dirname(dirname(__DIR__)).'/app/Http/Helpers/helpers.php';
+        if(file_exists($customHelperPath)){
+           require_once $customHelperPath;
+        }
+        require_once dirname(__DIR__).'/Helpers/helpers.php';
+
      }
 
 

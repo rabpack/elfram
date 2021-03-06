@@ -40,5 +40,13 @@ class RequestTest extends TestCase{
         $this->assertEquals("09120629038",$this->request->mobile);
     }
 
+    public function testItCanGetRequestByInputMethod()
+    {
+        $name = $this->request->input('name');
+        $this->assertIsString($name);
+        $this->assertEquals('meysam',$name);
+
+    }
+
 
 }
